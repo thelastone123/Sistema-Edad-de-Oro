@@ -1,0 +1,25 @@
+/*
+    Autor: Andrés Alfaro
+    Fecha: 20-01-2019
+    CopyRight: Andrés Alfaro
+*/
+
+body
+{
+    background-color: whitesmoke;
+    //background-image: url("../img/cbjj.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: auto;
+}
+
+#img
+{
+    width: 190px; 
+    height: 190px; 
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: auto; 
+    margin-right: auto;
+}
