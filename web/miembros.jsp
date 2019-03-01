@@ -51,7 +51,7 @@
     <!-- MODAL REGISTRO MIEMBROS-->
     <div class="container">
         <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-lg" style="width: 45%;" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-light">
                         <h4 class="modal-title" id="exampleModalLabel">
@@ -77,7 +77,7 @@
     <br>
     <!-- MODAL EDICION MIEMBROS -->
     <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" style="width: 45%;" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
                     <h5 class="modal-title" id="exampleModalLabel">
@@ -186,7 +186,7 @@
 
     <!-- MODAL INFORMACION ADICIONAL -->
     <div class="modal fade" id="modalAddInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" style="width: 45%;" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
                     <h4 class="modal-title" id="exampleModalLabel">

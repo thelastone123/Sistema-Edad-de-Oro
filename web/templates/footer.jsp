@@ -23,6 +23,7 @@
     <script src="recursos/js/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
     <script src="recursos/js/popper.min.js" type="text/javascript"></script>
     <script src="recursos/js/util.js" type="text/javascript"></script>
+    <script src="../recursos/js/jquery.mask.js" type="text/javascript"></script>
     <!-- Bootstrap Scripts -->
     <script src="recursos/js/bootstrap.min.js" type="text/javascript"></script>  
     <!-- DataTables Scripts -->

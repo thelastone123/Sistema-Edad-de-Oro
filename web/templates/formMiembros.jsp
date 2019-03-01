@@ -43,8 +43,8 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label>Teléfono:</label>
-                    <input type="text" class="form-control phone-mask" 
-                           placeholder="0000-0000" name="txtTelefono" required/>
+                    <input type="" class="form-control phone-mask" 
+                           placeholder="0000-0000" data-mask="0000-0000" name="txtTelefono" required/>
                     <div class="invalid-tooltip">
                         Por favor, ingrese el teléfono.
                     </div>
@@ -52,7 +52,8 @@
                 <div class="form-group col-md-4">
                     <label>DUI:</label>
                     <input type="text" class="form-control mixed-mask" 
-                           placeholder="00000000-0" name="txtDui" required/>
+                           placeholder="00000000-0" data-mask="00000000-0"
+                           name="txtDui" required/>
                     <div class="invalid-tooltip">
                         Por favor, ingrese el dui.
                     </div>
