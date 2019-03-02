@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label>Teléfono:</label>
-                    <input type="" class="form-control phone-mask" 
+                    <input type="text" class="form-control phone-mask" 
                            placeholder="0000-0000" data-mask="0000-0000" name="txtTelefono" required/>
                     <div class="invalid-tooltip">
                         Por favor, ingrese el teléfono.

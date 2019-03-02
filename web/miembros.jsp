@@ -17,12 +17,34 @@
         <link rel="icon" type="image/png" href="recursos/img/icon/member.ico" sizes="64x64">
         <jsp:include page="templates/header.jsp"/>
         <%
-            if (request.getAttribute("msj") != null) {
+            if (request.getAttribute("action") != null) 
+            {
+                if (request.getAttribute("msj") != null) 
+                {
         %>
         <script type="text/javascript">
-            /*swal('Realizado!', '<%= request.getAttribute("msj")%>', 'success');*/
+            swal('Realizado!','<%= request.getAttribute("msj")%>','success')
+            /*Swal.fire({
+                position: 'top-right',
+                type: 'success',
+                title: '<%= request.getAttribute("msj")%>',
+                showConfirmButton: false,
+                timer: 1500
+            })*/
+            /*swal
+            ({
+                title: '<%= request.getAttribute("action")%>',
+                text: "Si selecciona 'Aceptar', la operación será confirmada.",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#C82333',
+                cancelButtonColor: '#5A6268',
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar'
+            })*/
         </script>
         <%
+                }
             }
         %>
     </head>
@@ -121,7 +143,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label>Teléfono:</label>
-                                <input type="text" placeholder="0000-0000"
+                                <input type="text" placeholder="0000-0000" data-mask="0000-0000"
                                        class="form-control" name="txtTelefono" id="txtTelefonoEdit"/>
                                 <div class="invalid-feedback">
                                     Por favor, ingrese el teléfono.

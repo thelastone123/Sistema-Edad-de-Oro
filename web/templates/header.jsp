@@ -17,7 +17,7 @@
         
         <link href="recursos/css/estiloIndex.css" rel="stylesheet" type="text/css"/>
         
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="recursos/js/sweetalert.min.js" type="text/javascript"></script>
         <link href="recursos/css/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>

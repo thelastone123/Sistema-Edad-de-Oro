@@ -49,13 +49,13 @@ public class ProcesarMiembro extends HttpServlet {
             {
                 dao.modificar(m);
                 msj = "Miembro modificado correctamente.";
-                action = "modificar";
+                action = "¿Desea modificar este registro?";
             }
             else if(request.getParameter("btnEliminar") != null)
             {
                 dao.eliminar(m);
                 msj = "Miembro eliminado correctamente.";
-                action = "eliminar";
+                action = "¿Desea eliminar este registro?";
             }
             rd = request.getRequestDispatcher("miembros.jsp");
             request.setAttribute("msj", msj);
