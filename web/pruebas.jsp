@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pruebas</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <link href="recursos/css/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
     <center>
@@ -35,7 +36,14 @@
             ...
         </div>
     </div>
+    <div class="container">
+        <button type="button" class="btn btn-info" onclick="alerta();">
+            Probar alerta!
+        </button>
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="recursos/js/sweetalert2.all.min.js" type="text/javascript"></script>
+    <script src="recursos/js/AllSweetalert2.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     </body>

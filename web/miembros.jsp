@@ -23,25 +23,7 @@
                 {
         %>
         <script type="text/javascript">
-            swal('Realizado!','<%= request.getAttribute("msj")%>','success')
-            /*Swal.fire({
-                position: 'top-right',
-                type: 'success',
-                title: '<%= request.getAttribute("msj")%>',
-                showConfirmButton: false,
-                timer: 1500
-            })*/
-            /*swal
-            ({
-                title: '<%= request.getAttribute("action")%>',
-                text: "Si selecciona 'Aceptar', la operación será confirmada.",
-                type: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#C82333',
-                cancelButtonColor: '#5A6268',
-                confirmButtonText: 'Aceptar',
-                cancelButtonText: 'Cancelar'
-            })*/
+            swal('Realizado!','<%= request.getAttribute("msj")%>','success');
         </script>
         <%
                 }
@@ -62,14 +44,22 @@
                 <i class="fas fa-chevron-left"></i>
                 Página anterior
             </a>
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalAdd" style="float: right;">
+            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalReport" style="float: right;"
+                    data-toggle="tooltip" data-placement="right" title="Reportes">
+                <i class="fas fa-book-open"></i>
+            </button>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalAdd" 
+                    style="float: right; margin-right: 1%;">
                 <i class="fas fa-address-card"></i>
                 Registrar nuevo miembro
-            </button>   
+            </button> 
         </div>
     <center>
         <h1>Miembros Actuales</h1>  
     </center>
+    <br>
+    <hr style="width: 75%;">
+    <br>
     <!-- MODAL REGISTRO MIEMBROS-->
     <div class="container">
         <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -94,9 +84,7 @@
         </div>        
     </div>
     <!-- FIN DEL MODAL REGISTRO MIEMBROS -->
-    <br>
-    <hr style="width: 75%;">
-    <br>
+    
     <!-- MODAL EDICION MIEMBROS -->
     <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" style="width: 45%;" role="document">
@@ -187,13 +175,13 @@
                                 Cancelar
                             </button>
                             <button type="submit" name="btnEliminar" id="delete" 
-                                    onclick="loadId(<%= mi.getId()%>); confirmar();"
+                                    onclick="loadId(<%= mi.getId()%>);"
                                     value="Eliminar" class="btn btn-danger" style="float: right; margin-right: 10px;">
                                 <i class="fas fa-trash"></i>
                                 Eliminar
                             </button>
                                     <button type="submit" name="btnModificar" id="edit" class="btn btn-info" 
-                                            style="float: right; margin-right: 10px;" onclick="confirmar();">
+                                            style="float: right; margin-right: 10px;">
                                 <i class="fas fa-save"></i>
                                 Guardar
                             </button>
@@ -282,6 +270,31 @@
     </div>
     <!-- FIN MODAL INFORMACION ADICIONAL -->
 
+    <!-- MODAL REPORTES MIEMBROS-->
+    <div class="container">
+        <div class="modal fade" id="modalReport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" style="width: 45%;" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h4 class="modal-title" id="exampleModalLabel">
+                            <i class="fas fa-bookmark"> </i>
+                            Reportes
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!-- FORMULARIO -->
+                    <div class="modal-body">
+                        <jsp:include page="templates/modalReportes.jsp"/>    
+                    </div>
+                    <!-- FIN DEL FORMULARIO -->
+                </div>
+            </div>
+        </div>        
+    </div>
+    <!-- FIN DEL MODAL REPORTES MIEMBROS -->
+    
     <!-- TABLA -->
     <div class="container-flex" style="margin-bottom: 1%; margin-left: auto; margin-right: auto; width: 83%;">
         <table id="datatable" class="table table-hover text-center" style="width: 100%;" cellspacing="0">

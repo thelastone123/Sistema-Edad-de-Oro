@@ -36,6 +36,6 @@
     <script src="recursos/js/fontawesome-all.js" type="text/javascript"></script>    
     <!-- Custom Scripts -->
     <script src="recursos/js/AllDataTables.js" type="text/javascript"></script>
-    <script src="recursos/js/validationForms.js" type="text/javascript"></script>
+    <script src="recursos/js/AllSweetalert2.js" type="text/javascript"></script>
 </body>
 </html>

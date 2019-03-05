@@ -16,8 +16,7 @@
         <link href="recursos/css/buttons.bootstrap4.css" rel="stylesheet" type="text/css"/>        
         
         <link href="recursos/css/estiloIndex.css" rel="stylesheet" type="text/css"/>
-        
-        <script src="recursos/js/sweetalert.min.js" type="text/javascript"></script>
+        <link href="../recursos/css/estiloReportes.css" rel="stylesheet" type="text/css"/>
         <link href="recursos/css/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
