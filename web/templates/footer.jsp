@@ -32,6 +32,7 @@
     <script src="recursos/js/buttons.bootstrap4.js" type="text/javascript"></script>
     <script src="recursos/js/jquery.dataTables.js" type="text/javascript"></script>
     <!-- Alerts and Icons Scripts -->
+    
     <script src="recursos/js/sweetalert2.all.min.js" type="text/javascript"></script>
     <script src="recursos/js/fontawesome-all.js" type="text/javascript"></script>    
     <!-- Custom Scripts -->

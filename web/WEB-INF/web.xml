@@ -8,6 +8,10 @@
         <servlet-name>ProcesarDetMiem</servlet-name>
         <servlet-class>com.controlador.ProcesarDetMiem</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcesarEquipo</servlet-name>
+        <servlet-class>com.controlador.ProcesarEquipo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcesarMiembro</servlet-name>
         <url-pattern>/procesarMiembro</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>ProcesarDetMiem</servlet-name>
         <url-pattern>/procesarDetMiem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcesarEquipo</servlet-name>
+        <url-pattern>/procesarEquipo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

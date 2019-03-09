@@ -49,7 +49,7 @@
                         Por favor, ingrese el teléfono.
                     </div>
                 </div>                    
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label>DUI:</label>
                     <input type="text" class="form-control mixed-mask" 
                            placeholder="00000000-0" data-mask="00000000-0"
@@ -66,7 +66,7 @@
                         Por favor, ingrese la dirección.
                     </div>
                 </div> 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-5">
                     <label>Estado:</label>                                    
                     <select name="estado" class="form-control" required>
                         <option value="">-- Seleccione un estado --</option>

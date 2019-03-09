@@ -50,6 +50,46 @@ public class DaoDetMiem extends Conexion{
         return lista;
     }
     
+    public List<DetMiem> filtrarDet() throws Exception
+    {
+        List<DetMiem> lista = new ArrayList();
+        ResultSet rs;
+        
+        try 
+        {
+            this.conectar();
+            String sql = "select * from detalleMiembro where hasDetail <> 2";
+            PreparedStatement pre = this.getCon().prepareStatement(sql);
+            rs = pre.executeQuery();
+            
+            while(rs.next())
+            {
+                DetMiem dm = new DetMiem();
+                dm.setIdMiembro(rs.getInt("idMiembro"));
+                dm.setFechaIngreso(rs.getString("fechaIngreso"));
+                dm.setFechaNacimiento(rs.getString("fechaNacimiento"));
+                dm.setMedicamentos(rs.getString("medicamentos"));
+                dm.setDiscapacidad(rs.getString("discapacidad"));
+                dm.setEnfermedad(rs.getString("enfermedad"));
+                dm.setNombreEmergencia(rs.getString("nombreEmergencia"));
+                dm.setParentesco(rs.getString("parentesco"));
+                dm.setTelefonoEmergencia(rs.getString("telefonoEmergencia"));
+                
+                lista.add(dm);
+            }
+        } 
+        catch (Exception e) 
+        {
+            throw e;
+        }
+        finally
+        {
+            this.desconectar();
+        }
+        
+        return lista;
+    }
+    
     public void insertar(DetMiem dm) throws Exception
     {
         Miembros m = new Miembros();
@@ -93,6 +133,28 @@ public class DaoDetMiem extends Conexion{
             
             pre.setInt(1, dm.getHasDetail());
             pre.setInt(2, dm.getIdMiembro());
+            
+            pre.executeUpdate();
+        }
+        catch (Exception e) 
+        {
+            throw e;
+        }
+        finally
+        {
+            this.desconectar();
+        }
+    }
+    
+    public void undoDetail(DetMiem dm) throws Exception
+    {
+        try 
+        {
+            this.conectar();
+            String sql = "update miembros set hasDetail = 2 where id = ?";
+            PreparedStatement pre = this.getCon().prepareStatement(sql);
+            
+            pre.setInt(1, dm.getIdMiembro());
             
             pre.executeUpdate();
         }

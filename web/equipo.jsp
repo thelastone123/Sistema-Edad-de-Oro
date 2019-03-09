@@ -1,35 +1,31 @@
 <%-- 
-    Document   : miembros
-    Created on : 11-21-2018, 09:44:37 PM
+    Document   : servidores
+    Created on : 11-21-2018, 09:45:01 PM
     Author     : Andrés Alfaro
 --%>
 
-<%@page import="com.modelo.Miembros"%>
-<%@page import="java.util.*"%>
 <%@page import="com.modelo.*"%>
-<%@page session="true" %>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Miembros</title>
+        <title>Equipo</title>
         <link rel="icon" type="image/png" href="recursos/img/icon/member.ico" sizes="64x64">
         <jsp:include page="templates/header.jsp"/>
         <%
-            if (request.getAttribute("msj") != null) 
-            {    
+            if (request.getAttribute("msj") != null) {
         %>
         <script type="text/javascript">
-            swal('Realizado!','<%= request.getAttribute("msj")%>','success');
+            swal('Realizado!', '<%= request.getAttribute("msj")%>', 'success');
         </script>
         <%
             }
         %>
     </head>
     <%
-        DaoMiembros dao = new DaoMiembros();
-        Miembros mi = new Miembros();
+        DaoEquipo dao = new DaoEquipo();
         String estd = "";
     %>
     <body>
@@ -37,7 +33,7 @@
             <a href="index.jsp" class="btn btn-danger" style="float: left;">
                 <i class="fas fa-home"></i>
             </a>&nbsp;
-            <a href="pagMiem.jsp" class="btn btn-secondary" style="float: contour;">
+            <a href="pagEq.jsp" class="btn btn-secondary" style="float: contour;">
                 <i class="fas fa-chevron-left"></i>
                 Página anterior
             </a>
@@ -48,14 +44,14 @@
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalAdd" 
                     style="float: right; margin-right: 1%;">
                 <i class="fas fa-address-card"></i>
-                Registrar nuevo miembro
+                Registrar nuevo integrante
             </button> 
         </div>
     <center>
-        <h1>Miembros Actuales</h1>  
+        <h1>Integrantes Actuales</h1>  
     </center>
     <hr style="width: 86%; margin-top: 2%; margin-bottom: 2%;">
-    <!-- MODAL REGISTRO MIEMBROS-->
+    <!-- MODAL REGISTRO INTEGRANTES-->
     <div class="container">
         <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" style="width: 45%;" role="document">
@@ -63,7 +59,7 @@
                     <div class="modal-header bg-light">
                         <h4 class="modal-title" id="exampleModalLabel">
                             <i class="fas fa-id-badge"> </i>
-                            Nuevo Miembro
+                            Nuevo Integrante
                         </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -71,7 +67,96 @@
                     </div>
                     <!-- FORMULARIO -->
                     <div class="modal-body">
-                        <jsp:include page="templates/formMiembros.jsp"/>    
+                        <form action="procesarEquipo" class="needs-validation" novalidate method="POST">                    
+                            <div class="form-row" style="padding-top: 1rem;">
+                                <div class="form-group col-s-4" style="display: none;">
+                                    <input type="text" class="form-control" name="txtId" value="0" readonly required/>
+                                </div>
+                                <div class="form-group col-s-4" style="display: none;">
+                                    <input type="text" class="form-control" name="txtDet" value="2" readonly required/>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Nombres:</label>
+                                    <input type="text" class="form-control" name="txtNombres" required/>
+                                    <div class="invalid-tooltip">
+                                        Por favor, ingrese los nombres.
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Apellidos:</label>
+                                    <input type="text" class="form-control" name="txtApellidos" required/>
+                                    <div class="invalid-tooltip">
+                                        Por favor, ingrese los apellidos.
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Edad:</label>
+                                    <input type="number" class="form-control" name="edad" required/>
+                                    <div class="invalid-tooltip">
+                                        Por favor, ingrese la edad.
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Teléfono:</label>
+                                    <input type="text" class="form-control phone-mask" 
+                                           placeholder="0000-0000" data-mask="0000-0000" name="txtTelefono" required/>
+                                    <div class="invalid-tooltip">
+                                        Por favor, ingrese el teléfono.
+                                    </div>
+                                </div>                    
+                                <div class="form-group col-md-3">
+                                    <label>DUI:</label>
+                                    <input type="text" class="form-control mixed-mask" 
+                                           placeholder="00000000-0" data-mask="00000000-0"
+                                           name="txtDui" required/>
+                                    <div class="invalid-tooltip">
+                                        Por favor, ingrese el dui.
+                                    </div>
+                                </div>                                
+                                <div class="form-group col-md-4">
+                                    <label>Dirección:</label>
+                                    <textarea class="form-control" name="txtDireccion"
+                                              style="height: 38px;" rows="3" required></textarea>
+                                    <div class="invalid-tooltip">
+                                        Por favor, ingrese la dirección.
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label>Tipo:</label>                                    
+                                    <select name="tipo" class="form-control" required>
+                                        <option value="">-- Seleccione un tipo --</option>
+                                        <option value="Colaborador">Colaborador</option>
+                                        <option value="Miembro">Miembro</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                    <div class="invalid-tooltip">
+                                        Por favor, seleccione un estado.
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label>Estado:</label>                                    
+                                    <select name="estado" class="form-control" required>
+                                        <option value="">-- Seleccione un estado --</option>
+                                        <option value="1">Activo</option>
+                                        <option value="2">Poco frecuente</option>
+                                        <option value="3">Inactivo</option>
+                                    </select>
+                                    <div class="invalid-tooltip">
+                                        Por favor, seleccione un estado.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-fluid">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float: right">
+                                    <i class="fas fa-times"></i>
+                                    Cancelar
+                                </button>
+                                <button type="submit" name="btnInsertar" class="btn btn-info" style="float: right; margin-right: 10px;">
+                                    <i class="fas fa-save"></i>
+                                    Registrar
+                                </button>
+                            </div>
+                        </form>    
                     </div>
                     <!-- FIN DEL FORMULARIO -->
                 </div>
@@ -79,7 +164,7 @@
         </div>        
     </div>
     <!-- FIN DEL MODAL REGISTRO MIEMBROS -->
-    
+
     <!-- MODAL EDICION MIEMBROS -->
     <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" style="width: 45%;" role="document">
@@ -95,7 +180,7 @@
                 </div>
                 <!-- FORMULARIO -->
                 <div class="modal-body bg-transparent">
-                    <form action="procesarMiembro" name="frmMiemb" method="POST">                    
+                    <form action="procesarEquipo" name="frmMiemb" method="POST">                    
                         <div class="form-row" style="padding-top: 1rem;">
                             <div class="form-group col-s-4" style="display: none;">
                                 <input type="text" class="form-control" id="txtIdEdit" name="txtId" value="0" readonly required/>
@@ -132,7 +217,7 @@
                                     Por favor, ingrese el teléfono.
                                 </div>
                             </div>                    
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-3">
                                 <label>DUI:</label>
                                 <input type="text" data-mask="00000000-0" placeholder="00000000-0" 
                                        class="form-control" id="txtDuiEdit" name="txtDui" id="txtDuiEdit" required/>
@@ -148,6 +233,18 @@
                                     Por favor, ingrese la dirección.
                                 </div>
                             </div>
+                            <div class="form-group col-md-5">
+                                    <label>Tipo:</label>                                    
+                                    <select name="tipo" class="form-control" id="tipoEdit" required>
+                                        <option value="">-- Seleccione un tipo --</option>
+                                        <option value="Colaborador">Colaborador</option>
+                                        <option value="Miembro">Miembro</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                    <div class="invalid-tooltip">
+                                        Por favor, seleccione un estado.
+                                    </div>
+                                </div>
                             <div class="form-group col-md-4">
                                 <label>Estado:</label>
                                 <select name="estado" class="form-control" id="estadoEdit">
@@ -160,10 +257,6 @@
                                 </div>                                                   
                             </div>
                         </div>
-                        <br>
-                        <%
-                            String value = "";
-                        %>
                         <div class="container-fluid">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float: right">
                                 <i class="fas fa-times"></i>
@@ -174,8 +267,8 @@
                                 <i class="fas fa-trash"></i>
                                 Eliminar
                             </button>
-                                    <button type="submit" name="btnModificar" id="edit" class="btn btn-info" 
-                                            style="float: right; margin-right: 10px;">
+                            <button type="submit" name="btnModificar" id="edit" class="btn btn-info" 
+                                    style="float: right; margin-right: 10px;">
                                 <i class="fas fa-save"></i>
                                 Guardar
                             </button>
@@ -288,7 +381,6 @@
         </div>        
     </div>
     <!-- FIN DEL MODAL REPORTES MIEMBROS -->
-    
     <!-- TABLA -->
     <div class="container-flex" style="margin-bottom: 1%; margin-left: auto; margin-right: auto; width: 86%;">
         <table id="datatable" class="table table-hover text-center" style="width: 100%;" cellspacing="0">
@@ -301,32 +393,34 @@
                     <th scope="col">Edad</th>
                     <th scope="col">Dui</th>
                     <th scope="col">Dirección</th>
+                    <th scope="col">Tipo</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead> 
             <tbody class="table-light">
                 <%
-                    List<Miembros> listaMi = dao.mostrar();
-                    for (Miembros m : listaMi) {
+                    List<Equipo> listaE = dao.mostrar();
+                    for (Equipo e : listaE) {
                 %>
                 <tr>
-                    <td hidden="true"><%= m.getId()%></td>
-                    <td><%= m.getNombres()%></td>
-                    <td><%= m.getApellidos()%></td>
-                    <td><%= m.getTelefono()%></td>
-                    <td><%= m.getEdad()%> años</td>
-                    <td><%= m.getDui()%></td>
-                    <td><%= m.getDireccion()%></td>
+                    <td hidden="true"><%= e.getId()%></td>
+                    <td><%= e.getNombres()%></td>
+                    <td><%= e.getApellidos()%></td>
+                    <td><%= e.getTelefono()%></td>
+                    <td><%= e.getEdad()%> años</td>
+                    <td><%= e.getDui()%></td>
+                    <td><%= e.getDireccion()%></td>
                     <%
-                        if (m.getEstado() == 1) {
+                        if (e.getEstado() == 1) {
                             estd = "Activo";
-                        } else if (m.getEstado() == 2) {
+                        } else if (e.getEstado() == 2) {
                             estd = "Poco frecuente";
-                        } else if (m.getEstado() == 3) {
+                        } else if (e.getEstado() == 3) {
                             estd = "Inactivo";
                         }
                     %>
+                    <td><%= e.getTipo()%></td>
                     <td><%= estd%></td>
                     <td>
                         <div class="btn-group btn-sm">
@@ -334,25 +428,25 @@
                                 Seleccionar
                             </button>
                             <div class="dropdown-menu text-center">
-                                <a class="dropdown-item" onclick="loadData(<%= m.getId()%>,<%= m.getHasDetail()%>,
-                                                '<%= m.getNombres()%>', '<%= m.getApellidos()%>', '<%= m.getTelefono()%>',<%= m.getEdad()%>,
-                                                '<%= m.getDui()%>', '<%= m.getDireccion()%>',<%= m.getEstado()%>)" 
+                                <a class="dropdown-item" onclick="loadData(<%= e.getId()%>,<%= e.getHasDetail()%>,
+                                                '<%= e.getNombres()%>', '<%= e.getApellidos()%>', '<%= e.getTelefono()%>',<%= e.getEdad()%>,
+                                                '<%= e.getDui()%>', '<%= e.getDireccion()%>','<%= e.getTipo()%>',<%= e.getEstado()%>)" 
                                    data-toggle="modal" data-target="#modalEdit">
                                     Editar 
                                 </a>
                                 <%
-                                    int id = m.getId();
-                                    String cad = m.getNombres() + m.getApellidos();
-                                    if (m.getHasDetail() == 2) {
+                                    int id = e.getId();
+                                    String cad = e.getNombres() + e.getApellidos();
+                                    if (e.getHasDetail() == 2) {
                                 %>
-                                <a class="dropdown-item" onclick="loadId(<%= m.getId()%>, '<%= m.getNombres()%>', '<%= m.getApellidos()%>')" 
+                                <a class="dropdown-item" onclick="loadId(<%= e.getId()%>, '<%= e.getNombres()%>', '<%= e.getApellidos()%>')" 
                                    data-toggle="modal" data-target="#modalAddInfo">
                                     Añadir información
                                 </a>
                                 <%
-                                } else if (m.getHasDetail() == 1) {
+                                } else if (e.getHasDetail() == 1) {
                                 %>
-                                <a class="dropdown-item" href="detMiembro.jsp?id=<%= m.getId()%>">
+                                <a class="dropdown-item" href="detMiembro.jsp?id=<%= e.getId()%>">
                                     Ver detalles
                                 </a>
                                 <%
@@ -369,8 +463,8 @@
         </table>
     </div>
     <!-- FIN DE TABLA -->
-    <hr style="width: 86%;">
+    <hr style="width: 75%;">
     <jsp:include page="templates/footer.jsp"/>
-    <script src="recursos/js/miembros.js" type="text/javascript"></script>
+    <script src="recursos/js/equipo.js" type="text/javascript"></script>
 </body>
 </html>

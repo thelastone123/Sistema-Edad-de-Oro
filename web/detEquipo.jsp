@@ -1,12 +1,10 @@
 <%-- 
-    Document   : detMiembro
-    Created on : 11-21-2018, 09:44:48 PM
+    Document   : derEquipo
+    Created on : 11-21-2018, 09:45:09 PM
     Author     : Andrés Alfaro
 --%>
 
-<%@page import="java.util.List"%>
 <%@page import="com.modelo.*"%>
-<%@page import="com.modelo.DaoDetMiem"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,21 +14,12 @@
         <link rel="icon" type="image/png" href="recursos/img/icon/detail.png" sizes="64x64">
         <link href="recursos/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet" type="text/css"/>
         <jsp:include page="templates/header.jsp"/>
-        <%
-            if (request.getAttribute("msj") != null) {
-        %>
-        <script type="text/javascript">
-            alert('<%= request.getAttribute("msj")%>');
-        </script>
-        <%
-            }
-        %>
     </head>
     <%
-        DaoDetMiem dao = new DaoDetMiem();
-        DaoMiembros daoM = new DaoMiembros();
-        DetMiem d = new DetMiem();
-        Miembros m = new Miembros();
+        DaoDetEq dao = new DaoDetEq(); 
+        DaoEquipo daoE = new DaoEquipo();
+        DetEquipo d = new DetEquipo();
+        Equipo e = new Equipo();
     %>
     <body>
         <div class="container">
@@ -38,21 +27,20 @@
                 <br>
                 <button type="button" class="btn btn-outline-secondary" role="link" onclick="window.location='miembros.jsp'">
                     <i class="fas fa-chevron-left"></i>
-                    Volver a miembros
+                    Volver a Equipo
                 </button>
             </div>
             <div class="container text-center">
-                <h1>Información de Miembro</h1>
+                <h1>Información de Miembro del Equipo</h1>
             </div>            
         </div><br>
         <%
             Integer id = 0;
             id = Integer.parseInt(request.getParameter("id"));
-            
-            if(id != 0)
-            {
-                m = daoM.getMiembro(id);
-                d = dao.getDetMiem(id);
+
+            if (id != 0) {
+                //e = daoE.getMiembro(id);
+                //d = dao.getDetMiem(id);
             }
         %>
         <div class="container" style="margin-bottom: 1%;">
@@ -61,27 +49,27 @@
                     <tbody>
                         <tr>
                             <th scope="row">Nombres:</th>
-                            <td><%= m.getNombres()%></td>
+                            <td><%= e.getNombres()%></td>
                         </tr>
                         <tr>
                             <th scope="row">Apellidos:</th>
-                            <td><%= m.getApellidos()%></td>
+                            <td><%= e.getApellidos()%></td>
                         </tr>
                         <tr>
                             <th scope="row">Teléfono:</th>
-                            <td><%= m.getTelefono()%></td>
+                            <td><%= e.getTelefono()%></td>
                         </tr>
                         <tr>
                             <th scope="row">Edad:</th>
-                            <td><%= m.getEdad()%> años</td>
+                            <td><%= e.getEdad()%> años</td>
                         </tr>
                         <tr>
                             <th scope="row">Dui:</th>
-                            <td><%= m.getDui()%></td>
+                            <td><%= e.getDui()%></td>
                         </tr>
                         <tr>
                             <th scope="row">Dirección</th>
-                            <td><%= m.getDireccion()%></td>
+                            <td><%= e.getDireccion()%></td>
                         </tr>
                         <tr>
                             <th scope="row">Fecha de Ingreso:</th>
@@ -90,30 +78,6 @@
                         <tr>
                             <th scope="row">Fecha de Nacimiento</th>
                             <td><%= d.getFechaNacimiento()%></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Medicamentos:</th>
-                            <td><%= d.getMedicamentos()%></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Discapacidad:</th>
-                            <td><%= d.getDiscapacidad()%></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Enfermedad:</th>
-                            <td><%= d.getEnfermedad()%></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Contacto en caso de Emergencia:</th>
-                            <td><%= d.getNombreEmergencia()%></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Parentesco:</th>
-                            <td><%= d.getParentesco()%></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Número de Teléfono:</th>
-                            <td><%= d.getTelefonoEmergencia()%></td>
                         </tr>
                     </tbody>
                 </table>

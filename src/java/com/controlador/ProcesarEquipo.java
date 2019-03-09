@@ -1,58 +1,59 @@
- 
+
 package com.controlador;
 
 import com.modelo.*;
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author Andrés Alfaro
  */
+public class ProcesarEquipo extends HttpServlet {
 
-public class ProcesarDetMiem extends HttpServlet {
- 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        DaoDetMiem dao = new DaoDetMiem();
-        DaoMiembros daoM = new DaoMiembros();
-        DetMiem dm = new DetMiem();
         RequestDispatcher rd = null;
+        Equipo eq = new Equipo();
+        DaoEquipo dao = new DaoEquipo();
         String msj = "";
+        
         try 
         {
-            dm.setIdMiembro(Integer.parseInt(request.getParameter("miem")));
-            dm.setFechaIngreso(request.getParameter("txtFechaIn"));
-            dm.setFechaNacimiento(request.getParameter("txtFechaNac"));
-            dm.setMedicamentos(request.getParameter("txtMedicamentos"));
-            dm.setDiscapacidad(request.getParameter("txtDiscapacidad"));
-            dm.setEnfermedad(request.getParameter("txtEnfermedad"));
-            dm.setNombreEmergencia(request.getParameter("txtContacto"));
-            dm.setParentesco(request.getParameter("txtParentesco"));
-            dm.setTelefonoEmergencia(request.getParameter("txtTelEmerg"));
-            dm.setHasDetail(Integer.parseInt(request.getParameter("detail")));
+            eq.setId(Integer.parseInt(request.getParameter("txtId")));
+            eq.setNombres(request.getParameter("txtNombres"));
+            eq.setApellidos(request.getParameter("txtApellidos"));
+            eq.setTelefono((request.getParameter("txtTelefono")));
+            eq.setEdad(Integer.parseInt(request.getParameter("edad")));
+            eq.setDui(request.getParameter("txtDui"));
+            eq.setDireccion(request.getParameter("txtDireccion"));
+            eq.setTipo(request.getParameter("tipo"));
+            eq.setEstado(Integer.parseInt(request.getParameter("estado")));
+            eq.setHasDetail(Integer.parseInt(request.getParameter("txtDet")));
             
             if(request.getParameter("btnInsertar") != null)
             {
-                dao.insertar(dm);
-                dao.replaceDetail(dm);
-                msj = "Datos Completos.";
+                dao.insertar(eq);
+                msj = "Integrante registrado correctamente.";
             }
             else if(request.getParameter("btnModificar") != null)
             {
-                dao.modificar(dm);
-                msj = "Datos Editados.";
+                dao.modificar(eq);
+                msj = "Integrante modificado correctamente.";
             }
             else if(request.getParameter("btnEliminar") != null)
             {
-                dao.eliminar(dm);
-                dao.undoDetail(dm);
-                msj = "Datos Eliminados.";
+                dao.eliminar(eq);
+                msj = "Integrante eliminado correctamente.";
             }
-            rd = request.getRequestDispatcher("infoMiem.jsp");
+            rd = request.getRequestDispatcher("equipo.jsp");
             request.setAttribute("msj", msj);
         }
         catch (Exception e) 

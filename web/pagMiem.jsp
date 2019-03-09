@@ -52,7 +52,7 @@
                         <h5 class="card-title">Información Adicional</h5>
                         <p class="card-text">Muestra información de las personas que conforman actualmente el ministerio.</p>
                         <a href="infoMiem.jsp" class="btn btn-primary">
-                            Ir a equipo
+                            Ir a información adicional
                             <i class="fas fa-chevron-right"></i>
                         </a>
                         <div class="card-footer small text-muted">

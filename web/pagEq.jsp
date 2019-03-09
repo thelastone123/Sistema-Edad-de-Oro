@@ -30,10 +30,10 @@
                 <div class="card" style="width: 17rem; height: 33rem;">
                     <img class="card-img-top" id="img" src="recursos/img/infoGenV.png" alt="Card image cap" >
                     <div class="card-body">
-                        <h5 class="card-title">Servidores</h5>
-                        <p class="card-text">Muestra información de los servidores actuales que posee el ministerio (Integrantes).</p>
-                        <a href="servidores.jsp" class="btn btn-primary">
-                            Ir a servidores
+                        <h5 class="card-title">Equipo Edad de Oro</h5>
+                        <p class="card-text">Muestra información del comité actual del ministerio (Integrantes).</p>
+                        <a href="equipo.jsp" class="btn btn-primary">
+                            Ir a equipo 
                             <i class="fas fa-chevron-right"></i>
                         </a>
                         <div class="card-footer small text-muted">
@@ -49,10 +49,10 @@
                 <div class="card" style="width: 17rem; height: 33rem;">
                     <img class="card-img-top" id="img" src="recursos/img/equipoV.png" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Colaboradores</h5>
-                        <p class="card-text">Muestra información de los colaboradores que conforman actualmente el ministerio.</p>
+                        <h5 class="card-title">Información Adicional</h5>
+                        <p class="card-text">Muestra información de los miembros del comité del ministerio.</p>
                         <a href="colaboradores.jsp" class="btn btn-primary">
-                            Ir a colaboradores
+                            Ir a información adicional
                             <i class="fas fa-chevron-right"></i>
                         </a>
                         <div class="card-footer small text-muted">

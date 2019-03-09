@@ -5,7 +5,7 @@ package com.modelo;
  *
  * @author Andrés Alfaro
  */
-public class Servidores {
+public class Equipo {
     private int id;
     private String nombres;
     private String apellidos;
@@ -13,12 +13,14 @@ public class Servidores {
     private int edad;
     private String dui;
     private String direccion;
+    private String tipo;
     private int estado;
+    private int hasDetail;
 
-    public Servidores() {
+    public Equipo() {
     }
 
-    public Servidores(int id, String nombres, String apellidos, String telefono, int edad, String dui, String direccion, int estado) {
+    public Equipo(int id, String nombres, String apellidos, String telefono, int edad, String dui, String direccion, String tipo, int estado, int hasDetail) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -26,7 +28,9 @@ public class Servidores {
         this.edad = edad;
         this.dui = dui;
         this.direccion = direccion;
+        this.tipo = tipo;
         this.estado = estado;
+        this.hasDetail = hasDetail;
     }
 
     public int getId() {
@@ -84,6 +88,14 @@ public class Servidores {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+    
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
     public int getEstado() {
         return estado;
@@ -93,4 +105,11 @@ public class Servidores {
         this.estado = estado;
     }
     
+    public int getHasDetail() {
+        return hasDetail;
+    }
+
+    public void setHasDetail(int hasDetail) {
+        this.hasDetail = hasDetail;
+    }
 }

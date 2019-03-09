@@ -12,3 +12,8 @@ function alerta()
         'success'
         )
 }
+
+function conf()
+{
+    
+}
